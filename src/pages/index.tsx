@@ -1,11 +1,10 @@
 import Head from "next/head";
-import { Inter } from "next/font/google";
 
 import Records from "@/components/Records";
 
-const inter = Inter({ subsets: ["latin"] });
-
 export default function Home() {
+  const isLoggedIn = false;
+
   return (
     <>
       <Head>
@@ -15,7 +14,23 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Records />
+      {isLoggedIn ? (
+        <>
+          <h1 className="text-2xl text-center text-slate-950 font-bold">
+            Welcome to Next CRM
+          </h1>
+          <Records />
+        </>
+      ) : (
+        <div className="flex flex-col items-center justify-center h-[80vh]">
+          <h1 className="text-2xl text-center text-slate-950 font-bold">
+            Welcome to Next CRM
+          </h1>
+          <p className="text-center text-slate-950 font-bold">
+            Please login to view records
+          </p>
+        </div>
+      )}
     </>
   );
 }
