@@ -3,7 +3,7 @@ import Head from "next/head";
 import Records from "@/components/Records";
 
 export default function Home() {
-  const isLoggedIn = false;
+  const isLoggedIn = true;
 
   return (
     <>
