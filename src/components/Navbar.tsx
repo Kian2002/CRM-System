@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 const Navbar = () => {
-  const isLoggedIn = false; // TODO: Replace with actual logic
+  const isLoggedIn = true; // TODO: Replace with actual logic
 
   return (
     <header className="flex w-full justify-between items-center bg-slate-800 text-white p-3 sm:px-6 sm:py-4">
@@ -15,7 +15,7 @@ const Navbar = () => {
           {isLoggedIn ? (
             <>
               <li>
-                <Link href="/new-record">Add Record</Link>
+                <Link href="/records/new">Add Record</Link>
               </li>
               <li>
                 <Link href="/logout">Logout</Link>
