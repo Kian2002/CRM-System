@@ -1,8 +1,10 @@
 import Head from "next/head";
+import { PrismaClient } from "@prisma/client";
 
 import Records from "@/components/Records";
+import { DbRecord } from "@/types";
 
-export default function Home() {
+export default function Home({ dbRecord }: { dbRecord: DbRecord }) {
   const isLoggedIn = true;
 
   return (
@@ -19,7 +21,7 @@ export default function Home() {
           <h1 className="text-2xl text-center text-slate-950 font-bold">
             Welcome to Next CRM
           </h1>
-          <Records />
+          <Records dbRecord={dbRecord} />
         </>
       ) : (
         <div className="flex flex-col items-center justify-center h-[80vh]">
@@ -34,3 +36,25 @@ export default function Home() {
     </>
   );
 }
+
+export const getServerSideProps = async () => {
+  const prisma = new PrismaClient();
+
+  const dbRecord = await prisma.posts.findMany();
+
+  const serializedRecord = dbRecord.map((record) => {
+    return {
+      ...record,
+      id: record.id.toString(),
+      date_created: record.date_created?.toISOString(),
+      phone: record.phone?.toString(),
+      zipcode: record.zipcode?.toString(),
+    };
+  });
+
+  return {
+    props: {
+      dbRecord: serializedRecord,
+    },
+  };
+};

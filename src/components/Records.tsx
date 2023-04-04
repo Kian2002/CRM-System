@@ -1,18 +1,10 @@
 import Link from "next/link";
-import React from "react";
+import React, { FC } from "react";
 
-const Records = () => {
-  const records = [
-    {
-      Name: "John Doe",
-      address: "123 Main St",
-      city: "New York",
-      state: "NY",
-      zipcode: "10001",
-      created_at: "2021-01-01",
-      id: 1,
-    },
-  ];
+import { DbRecord } from "@/types";
+
+const Records = ({ dbRecord }: { dbRecord: DbRecord }) => {
+  const records = dbRecord;
 
   const headers = [
     "Name",
@@ -39,30 +31,34 @@ const Records = () => {
         </tr>
       </thead>
       <tbody>
-        {records.map((row, index) => (
-          <tr key={index} className="bg-white">
-            {Object.values(row).map((value, index) =>
-              index === 6 ? (
-                <td
-                  key={index}
-                  className="px-6 py-4 whitespace-no-wrap border border-gray-500"
-                >
-                  <Link
-                    href={`/records/${row.id}`}
-                    className="border-b border-blue-500 text-blue-500"
-                  >
-                    {row.id}
-                  </Link>
-                </td>
-              ) : (
-                <td
-                  key={index}
-                  className="px-6 py-4 whitespace-no-wrap border border-gray-500"
-                >
-                  {value}
-                </td>
-              )
-            )}
+        {records.map((record) => (
+          <tr key={record.id} className="border border-gray-300">
+            <td className="px-6 py-4 whitespace-no-wrap border border-gray-500">
+              {record.name}
+            </td>
+            <td className="px-6 py-4 whitespace-no-wrap border border-gray-500">
+              {record.address}
+            </td>
+            <td className="px-6 py-4 whitespace-no-wrap border border-gray-500">
+              {record.city}
+            </td>
+            <td className="px-6 py-4 whitespace-no-wrap border border-gray-500">
+              {record.state}
+            </td>
+            <td className="px-6 py-4 whitespace-no-wrap border border-gray-500">
+              {record.zipcode}
+            </td>
+            <td className="px-6 py-4 whitespace-no-wrap border border-gray-500">
+              {record.date_created}
+            </td>
+            <td className="px-6 py-4 whitespace-no-wrap border border-gray-500">
+              <Link
+                href={`/records/${record.id}`}
+                className="border-b border-blue-500 text-blue-500"
+              >
+                {record.id}
+              </Link>
+            </td>
           </tr>
         ))}
       </tbody>
