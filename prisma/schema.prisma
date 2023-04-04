@@ -8,13 +8,13 @@ datasource db {
 }
 
 model Posts {
-  id         BigInt    @id @default(autoincrement())
-  created_at DateTime? @default(now()) @db.Timestamptz(6)
-  Name       String?   @default("255") @db.VarChar
-  Email      String?
-  Phone      Decimal?  @db.Decimal
-  Address    String?
-  City       String?
-  State      String?
-  Zipcode    Decimal?  @db.Decimal
+  id           BigInt    @id @default(autoincrement())
+  date_created DateTime? @default(dbgenerated("(now() AT TIME ZONE 'pst'::text)")) @db.Timestamptz(6)
+  name         String?   @default("255") @db.VarChar
+  email        String?
+  phone        Decimal?  @db.Decimal
+  address      String?
+  city         String?
+  state        String?
+  zipcode      Decimal?  @db.Decimal
 }
