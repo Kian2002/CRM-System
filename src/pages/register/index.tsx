@@ -2,15 +2,43 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 
 const Register = () => {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+
   const router = useRouter();
 
   const handleLogin = () => {
     router.push("/login");
   };
 
-  const handleRegister = () => {};
+  const handleRegister = async () => {
+    if (validatePassword()) {
+      try {
+        const res = await fetch("/api/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        });
+
+        const data = await res.json();
+
+        if (data.error) {
+          setError(data.error);
+        } else {
+          router.push("/"); // TODO - Auth user/create a session and redirect to dashboard
+        }
+      } catch (error: any) {
+        setError(error.message);
+      }
+    }
+  };
 
   const validatePassword = () => {
     if (password !== confirmPassword) {
@@ -33,6 +61,10 @@ const Register = () => {
               id="email"
               required
               placeholder="Email"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              value={email}
             />
           </div>
 
@@ -46,6 +78,8 @@ const Register = () => {
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
+              value={password}
+              minLength={6}
             />
           </div>
 
@@ -59,6 +93,8 @@ const Register = () => {
               onChange={(e) => {
                 setConfirmPassword(e.target.value);
               }}
+              value={confirmPassword}
+              minLength={6}
             />
           </div>
 
@@ -68,10 +104,14 @@ const Register = () => {
             </div>
           )}
 
+          {error && (
+            <div className="text-red-500 text-center mb-6">{error}</div>
+          )}
+
           <div className="my-8 bg-slate-300 text-center text-slate-800 font-bold rounded">
             <button
               className="w-full p-2"
-              type="submit"
+              type="button"
               onClick={handleRegister}
             >
               Register
