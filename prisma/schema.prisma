@@ -20,8 +20,8 @@ model Posts {
 }
 
 model Users {
-  id         BigInt    @id @default(autoincrement())
+  id         String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   created_at DateTime? @default(dbgenerated("(now() AT TIME ZONE 'pdt'::text)")) @db.Timestamptz(6)
-  email      String?
-  password   String?
+  email      String    @unique
+  password   String
 }
