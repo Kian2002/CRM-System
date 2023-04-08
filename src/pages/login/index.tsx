@@ -6,8 +6,8 @@ const Login = () => {
 
   const handleForgotPassword = () => {};
 
-  const handleSignUp = () => {
-    router.push("/signup");
+  const handleRegister = () => {
+    router.push("/register");
   };
 
   const handleLogin = () => {};
@@ -61,7 +61,7 @@ const Login = () => {
             <button
               className="text-blue-300"
               type="button"
-              onClick={handleSignUp}
+              onClick={handleRegister}
             >
               Sign Up
             </button>
