@@ -18,3 +18,10 @@ model Posts {
   state        String?
   zipcode      Decimal?  @db.Decimal
 }
+
+model Users {
+  id           BigInt    @id @default(autoincrement())
+  date_created DateTime? @default(dbgenerated("(now() AT TIME ZONE 'pst'::text)")) @db.Timestamptz(6)
+  email        String?
+  password     String?
+}
