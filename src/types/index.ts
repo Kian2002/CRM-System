@@ -1,3 +1,4 @@
+import { UUID } from "crypto";
 import { ReactNode } from "react";
 
 export type DbRecord = {
@@ -11,3 +12,9 @@ export type DbRecord = {
       phone: number;
       email: string;
   }[];
+
+  export interface IUser{
+        id: UUID;
+        email: string;
+        password: string; 
+  }
