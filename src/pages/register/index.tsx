@@ -1,3 +1,4 @@
+import { loginUser } from "@/utils";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
@@ -32,7 +33,13 @@ const Register = () => {
         if (data.error) {
           setError(data.error);
         } else {
-          router.push("/"); // TODO - Auth user/create a session and redirect to dashboard
+          const loginRes = await loginUser(email, password);
+
+          if (loginRes && !loginRes.ok) {
+            setError(loginRes.error || "Something went wrong");
+          } else {
+            router.push("/");
+          }
         }
       } catch (error: any) {
         setError(error.message);
