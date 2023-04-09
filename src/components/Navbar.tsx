@@ -1,8 +1,17 @@
 import React from "react";
 import Link from "next/link";
+import { useSession, signOut } from "next-auth/react";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
-  const isLoggedIn = true; // TODO: Replace with actual logic
+  const router = useRouter();
+  const isLoggedIn = useSession().data?.user;
+
+  const handleSignOut = async () => {
+    await signOut();
+
+    router.push("/login");
+  };
 
   return (
     <header className="flex w-full justify-between items-center bg-slate-800 text-white p-3 sm:px-6 sm:py-4">
@@ -18,7 +27,7 @@ const Navbar = () => {
                 <Link href="/records/new">Add Record</Link>
               </li>
               <li>
-                <Link href="/logout">Logout</Link>
+                <button onClick={handleSignOut}>Logout</button>
               </li>
             </>
           ) : (
@@ -38,5 +47,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-// TODO: use next serverless functions to handle login and register
