@@ -32,7 +32,8 @@ const ViewRecord = ({ dbRecord }: { dbRecord: DbRecord }) => {
 
   return (
     <div className="flex flex-col min-w-0 break-words mt-10 bg-white border border-solid rounded border-[rgba(0,0,0,0.125)]">
-      {dbRecord.map((record) => (
+      {router.isFallback && <div>Loading...</div>}
+      {dbRecord?.map((record) => (
         <div key={record.id}>
           <div className="px-5 py-2 mb-0 bg-[rgba(0,0,0,0.03)] border-b border-[rgba(0,0,0,0.125)]">
             <strong>{record.name}</strong>
