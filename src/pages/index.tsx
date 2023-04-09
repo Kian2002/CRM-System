@@ -1,11 +1,12 @@
 import Head from "next/head";
 import { PrismaClient } from "@prisma/client";
+import { useSession } from "next-auth/react";
 
 import Records from "@/components/Records";
 import { DbRecord } from "@/types";
 
 export default function Home({ dbRecord }: { dbRecord: DbRecord }) {
-  const isLoggedIn = true;
+  const isLoggedIn = useSession().data?.user;
 
   return (
     <>
