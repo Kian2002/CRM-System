@@ -2,19 +2,29 @@ import { UUID } from "crypto";
 import { ReactNode } from "react";
 
 export type DbRecord = {
-      id: number;
-      name: string;
-      address: string;
-      city: string;
-      state: string;
-      zipcode: number;
-      date_created: ReactNode;
-      phone: number;
-      email: string;
-  }[];
+  id: number;
+  name: string;
+  address: string;
+  city: string;
+  state: string;
+  zipcode: number;
+  date_created: ReactNode;
+  phone: number;
+  email: string;
+}[];
 
-  export interface IUser{
-        id: UUID;
-        email: string;
-        password: string; 
-  }
+export interface IUser {
+  id: UUID;
+  email: string;
+  password: string;
+}
+
+export interface IRecord {
+  id: number;
+  name: string;
+  email: string;
+  address: string;
+  city: string;
+  state: string;
+  zipcode: number;
+}
