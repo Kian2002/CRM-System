@@ -1,7 +1,12 @@
+import { loginUser } from "@/utils";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
   const router = useRouter();
 
   const handleForgotPassword = () => {};
@@ -10,7 +15,15 @@ const Login = () => {
     router.push("/register");
   };
 
-  const handleLogin = () => {};
+  const handleLogin = async () => {
+    const res = await loginUser(email, password);
+
+    if (res && !res.ok) {
+      setError(res.error || "Something went wrong");
+    } else {
+      router.push("/");
+    }
+  };
 
   return (
     <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[calc(100vh-114px)] lg:py-0 text-white">
@@ -26,6 +39,10 @@ const Login = () => {
               id="email"
               required
               placeholder="Email"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              value={email}
             />
           </div>
 
@@ -37,8 +54,18 @@ const Login = () => {
               id="password"
               required
               placeholder="Password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              value={password}
             />
           </div>
+
+          {error && (
+            <div className="flex justify-center items-center gap-2 mb-4">
+              <p className="text-red-500">{error}</p>
+            </div>
+          )}
 
           <div className="flex justify-end my-5">
             <button
@@ -51,7 +78,7 @@ const Login = () => {
           </div>
 
           <div className="my-8 bg-slate-300 text-center text-slate-800 font-bold rounded">
-            <button className="w-full p-2" type="submit" onClick={handleLogin}>
+            <button className="w-full p-2" type="button" onClick={handleLogin}>
               Login
             </button>
           </div>
