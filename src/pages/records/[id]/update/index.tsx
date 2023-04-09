@@ -1,17 +1,18 @@
-import { DbRecord } from "@/types";
+import React, { useState } from "react";
 import { PrismaClient } from "@prisma/client";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
 
-const UpdateRecord = ({ record }: { record: DbRecord }) => {
+import { IRecord } from "@/types";
+
+const UpdateRecord = ({ record }: { record: IRecord }) => {
   const router = useRouter();
 
-  const [name, setName] = useState(record[0].name);
-  const [address, setAddress] = useState(record[0].address);
-  const [city, setCity] = useState(record[0].city);
-  const [state, setState] = useState(record[0].state);
-  const [zipcode, setZipcode] = useState(record[0].zipcode);
+  const [name, setName] = useState(record?.name);
+  const [address, setAddress] = useState(record?.address);
+  const [city, setCity] = useState(record?.city);
+  const [state, setState] = useState(record?.state);
+  const [zipcode, setZipcode] = useState(record?.zipcode);
 
   const handleUpdate = async () => {
     const res = await fetch("/api/updateRecord", {
@@ -20,7 +21,7 @@ const UpdateRecord = ({ record }: { record: DbRecord }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id: record[0].id,
+        id: record?.id,
         name,
         address,
         city,
@@ -41,6 +42,8 @@ const UpdateRecord = ({ record }: { record: DbRecord }) => {
   return (
     <div className="flex flex-col mt-10 justify-normal items-center">
       <h1 className="text-3xl text-slate-900 font-medium">Update Record</h1>
+
+      {router.isFallback && <div>Loading...</div>}
 
       <form action="" className="block mb-4 w-6/12">
         <label htmlFor="name" className="form-label">
@@ -156,7 +159,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
-      record: Object.values({ serializedRecord }),
+      record: serializedRecord,
     },
   };
 };
