@@ -21,7 +21,7 @@ const Login = () => {
     if (res && !res.ok) {
       setError(res.error || "Something went wrong");
     } else {
-      router.push("/");
+      router.push("/records");
     }
   };
 

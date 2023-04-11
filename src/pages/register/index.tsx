@@ -38,7 +38,7 @@ const Register = () => {
           if (loginRes && !loginRes.ok) {
             setError(loginRes.error || "Something went wrong");
           } else {
-            router.push("/");
+            router.push("/records");
           }
         }
       } catch (error: any) {

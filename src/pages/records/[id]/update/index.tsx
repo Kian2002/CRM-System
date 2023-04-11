@@ -32,10 +32,10 @@ const UpdateRecord = ({ record }: { record: IRecord }) => {
 
     if (res.status === 200) {
       alert("Record updated successfully");
-      router.push("/");
+      router.push("/records");
     } else {
       alert("Something went wrong");
-      router.push("/");
+      router.push("/records");
     }
   };
 

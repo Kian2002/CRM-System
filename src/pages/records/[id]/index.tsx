@@ -22,7 +22,7 @@ const ViewRecord = ({ dbRecord }: { dbRecord: DbRecord }) => {
     });
 
     if (res.status === 200) {
-      router.push("/");
+      router.push("/records");
     }
   };
 

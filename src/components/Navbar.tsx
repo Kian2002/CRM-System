@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <header className="flex w-full justify-between items-center bg-slate-800 text-white p-3 sm:px-6 sm:py-4">
       <h1 className="text-3xl border-b-2 hover:text-slate-400 hover:border-slate-400">
-        <Link href="/">Next CRM</Link>
+        <Link href="/records">Next CRM</Link>
       </h1>
 
       <nav className="ml-6 sm:text-lg text-slate-400 text-xs">

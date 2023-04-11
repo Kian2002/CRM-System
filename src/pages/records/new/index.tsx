@@ -61,7 +61,7 @@ const NewRecord = () => {
 
     if (res.status === 200) {
       alert("Record created");
-      router.push("/");
+      router.push("/records");
     } else {
       alert("Something went wrong");
     }
