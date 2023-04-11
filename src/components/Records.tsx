@@ -17,7 +17,7 @@ const Records = ({ dbRecord }: { dbRecord: DbRecord }) => {
   ];
 
   return (
-    <table className="w-full border border-collapse border-gray-300 shadow-lg mt-10">
+    <table className="border border-collapse border-gray-300 shadow-lg mt-10 overflow-x-scroll block sm:overflow-hidden sm:w-fit mx-auto w-[300px]">
       <thead className="bg-slate-800">
         <tr>
           {headers.map((header, index) => (
