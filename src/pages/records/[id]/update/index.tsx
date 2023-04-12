@@ -40,7 +40,7 @@ const UpdateRecord = ({ record }: { record: IRecord }) => {
   };
 
   return (
-    <div className="flex flex-col mt-10 justify-normal items-center">
+    <div className="container flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[calc(100vh-114px)] lg:py-0">
       <h1 className="text-3xl text-slate-900 font-medium">Update Record</h1>
 
       {router.isFallback && <div>Loading...</div>}

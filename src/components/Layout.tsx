@@ -11,7 +11,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <Navbar />
-      <main className="container mx-auto">{children}</main>
+      <main>{children}</main>
       <Footer />
     </>
   );

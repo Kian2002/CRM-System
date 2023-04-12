@@ -68,7 +68,7 @@ const NewRecord = () => {
   };
 
   return (
-    <div className="flex flex-col mt-10 justify-normal items-center">
+    <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[calc(100vh-114px)] lg:py-0">
       <h1 className="text-3xl text-slate-900 font-medium">New Record</h1>
 
       <form action="" className="block mb-4 w-6/12">

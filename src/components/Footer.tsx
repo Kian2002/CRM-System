@@ -10,7 +10,7 @@ const Footer = () => {
   const linkedin = "https://www.linkedin.com/in/kianabd";
 
   return (
-    <footer className="bg-slate-800 text-white absolute bottom-0 w-full">
+    <footer className="bg-slate-800 text-white w-full">
       <div className="flex text-center text-xs p-3 justify-center items-center">
         <p>&copy; {year} Kian Abdollahzadeh. All rights reserved. </p>
 

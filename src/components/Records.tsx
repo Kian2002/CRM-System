@@ -17,52 +17,54 @@ const Records = ({ dbRecord }: { dbRecord: DbRecord }) => {
   ];
 
   return (
-    <table className="border border-collapse border-gray-300 shadow-lg mt-10 overflow-x-scroll block sm:overflow-hidden sm:w-fit mx-auto w-[300px]">
-      <thead className="bg-slate-800">
-        <tr>
-          {headers.map((header, index) => (
-            <th
-              key={index}
-              className="px-6 py-3 text-left font-bold text-white border border-gray-300"
-            >
-              {header}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {records.map((record) => (
-          <tr key={record.id} className="border border-gray-300">
-            <td className="px-6 py-4 whitespace-no-wrap border border-gray-500">
-              {record.name}
-            </td>
-            <td className="px-6 py-4 whitespace-no-wrap border border-gray-500">
-              {record.address}
-            </td>
-            <td className="px-6 py-4 whitespace-no-wrap border border-gray-500">
-              {record.city}
-            </td>
-            <td className="px-6 py-4 whitespace-no-wrap border border-gray-500">
-              {record.state}
-            </td>
-            <td className="px-6 py-4 whitespace-no-wrap border border-gray-500">
-              {record.zipcode}
-            </td>
-            <td className="px-6 py-4 whitespace-no-wrap border border-gray-500">
-              {record.date_created}
-            </td>
-            <td className="px-6 py-4 whitespace-no-wrap border border-gray-500">
-              <Link
-                href={`/records/${record.id}`}
-                className="border-b border-blue-500 text-blue-500"
+    <div className="container mx-auto relative overflow-x-auto shadow-md sm:rounded-lg mb-10 mt-10 w-full">
+      <table className="w-full text-sm text-left text-slate-800">
+        <thead className="bg-slate-800">
+          <tr>
+            {headers.map((header, index) => (
+              <th
+                key={index}
+                className="px-6 py-3 text-left font-bold text-white border border-gray-300"
               >
-                {record.id}
-              </Link>
-            </td>
+                {header}
+              </th>
+            ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {records.map((record) => (
+            <tr key={record.id} className="border border-gray-300">
+              <td className="px-6 py-4 whitespace-no-wrap border border-gray-500">
+                {record.name}
+              </td>
+              <td className="px-6 py-4 whitespace-no-wrap border border-gray-500">
+                {record.address}
+              </td>
+              <td className="px-6 py-4 whitespace-no-wrap border border-gray-500">
+                {record.city}
+              </td>
+              <td className="px-6 py-4 whitespace-no-wrap border border-gray-500">
+                {record.state}
+              </td>
+              <td className="px-6 py-4 whitespace-no-wrap border border-gray-500">
+                {record.zipcode}
+              </td>
+              <td className="px-6 py-4 whitespace-no-wrap border border-gray-500">
+                {record.date_created}
+              </td>
+              <td className="px-6 py-4 whitespace-no-wrap border border-gray-500">
+                <Link
+                  href={`/records/${record.id}`}
+                  className="border-b border-blue-500 text-blue-500"
+                >
+                  {record.id}
+                </Link>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
