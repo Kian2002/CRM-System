@@ -11,7 +11,9 @@ const Layout: FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <Navbar />
-      <main>{children}</main>
+      <main className="overflow-auto min-h-[calc(100vh-114px)]">
+        {children}
+      </main>
       <Footer />
     </>
   );

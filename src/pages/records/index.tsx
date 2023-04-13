@@ -7,7 +7,7 @@ import { DbRecord } from "@/types";
 const RecordsPage = ({ dbRecord }: { dbRecord: DbRecord }) => {
   return (
     <>
-      <h1 className="text-2xl text-center text-slate-950 font-bold mt-10">
+      <h1 className="text-2xl text-center text-slate-950 font-bold pt-10">
         Welcome to Next CRM
       </h1>
       <Records dbRecord={dbRecord} />
